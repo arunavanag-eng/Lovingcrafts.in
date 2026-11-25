@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fastrr x Loving Crafts: a checkout proposal</title>
+<style>
+  :root{
+    --ink:#111114; --ink2:#3b3b42; --mute:#6f6f78; --paper:#F5F1EA; --card:#FFFFFF; --line:#E3DDD2;
+    --accent:#E4491C; --accent-d:#B93610; --ok:#17803D; --ok-bg:#E6F4EA; --warn-bg:#FFF2D6; --dark:#111114;
+    --serif:Lora,'Iowan Old Style','Palatino Linotype',Georgia,serif;
+    --sans:Carlito,'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  h1,h2,h3,h4{font-family:var(--serif);line-height:1.12;letter-spacing:-.01em}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:20;background:rgba(245,241,234,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;gap:26px;height:56px;overflow-x:auto;white-space:nowrap}
+  .logo{font-family:var(--serif);font-weight:700;font-size:23px;letter-spacing:-.02em}
+  .logo i{display:inline-block;width:8px;height:8px;background:var(--accent);border-radius:50%;margin-left:3px}
+  .nav a.l{font-size:15px;color:var(--mute);text-decoration:none;font-weight:700}
+  .nav a.l:hover,.nav a.l.on{color:var(--ink)}
+  .nav a.l.on{box-shadow:0 2px 0 var(--accent)}
+
+  /* hero */
+  .hero{padding:72px 0 44px}
+  .eyebrow{font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-d);margin-bottom:18px}
+  .hero h1{font-size:clamp(36px,5.4vw,64px);max-width:900px;margin-bottom:24px}
+  .hero p.lead{font-size:21px;color:var(--ink2);max-width:780px}
+  .meta{display:flex;flex-wrap:wrap;gap:12px 40px;margin:34px 0 0;padding-top:22px;border-top:1px solid var(--line);font-size:15px;color:var(--mute)}
+  .meta b{display:block;color:var(--ink);font-size:17px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  .stat{background:var(--dark);color:#fff;border-radius:16px;padding:22px 24px}
+  .stat b{display:block;font-family:var(--serif);font-size:38px;line-height:1;color:#fff}
+  .stat span{font-size:15px;color:#c9c9d0}
+
+  section{padding:64px 0}
+  section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .kick{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-d);margin-bottom:12px}
+  h2.t{font-size:clamp(28px,3.6vw,42px);max-width:860px;margin-bottom:18px}
+  p.sub{font-size:20px;color:var(--ink2);max-width:760px}
+
+  /* persona */
+  .persona{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+  section.alt .persona{background:var(--paper)}
+  .avatar{width:96px;height:96px;border-radius:50%;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:44px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .tag{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:15px;font-weight:700;color:var(--ink2)}
+  .small{font-size:15px;color:var(--mute)}
+
+  /* journey */
+  .jgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:30px}
+  .jcard{border-radius:20px;padding:26px;border:1px solid var(--line);background:#fff}
+  .jcard.f{background:var(--dark);color:#fff;border-color:var(--dark)}
+  .jcard h4{font-size:15px;font-family:var(--sans);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;color:var(--mute)}
+  .jcard.f h4{color:#ff9d7e}
+  .steps{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .step{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:15px;line-height:1.2}
+  .step b{display:block;font-size:16px}
+  .jcard.f .step{background:#1d1d22;border-color:#33333a;color:#fff}
+  .arr{color:var(--mute);font-weight:700}
+  .jcard p{margin-top:16px;font-size:16px;color:var(--ink2)}
+  .jcard.f p{color:#d8d8de}
+  .quote{margin-top:30px;border-left:5px solid var(--accent);padding:6px 0 6px 24px;font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);line-height:1.3;max-width:900px}
+
+  /* moments */
+  .moment{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start;margin-top:30px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+  .col{border-radius:16px;padding:18px 20px;font-size:16px;border:1px solid var(--line);background:#fff}
+  section.alt .col{background:var(--paper)}
+  .col h5{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;color:var(--mute)}
+  .col.f,section.alt .col.f{background:#FFF7F3;border-color:#F4C9B8}
+  .col.f h5{color:var(--accent-d)}
+  .col ul{list-style:none}
+  .col li{padding:5px 0 5px 20px;position:relative}
+  .col li:before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:50%;background:#c9c3b6}
+  .col.f li:before{background:var(--accent)}
+  .proof{margin-top:18px;background:var(--dark);color:#fff;border-radius:14px;padding:16px 20px;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+  .proof b{font-family:var(--serif);font-size:30px;color:#fff}
+  .proof span{font-size:16px;color:#d8d8de}
+
+  /* phone mocks */
+  .phone{width:100%;max-width:340px;margin:0 auto;background:#fff;border:9px solid #17171b;border-radius:38px;overflow:hidden;box-shadow:0 26px 60px rgba(17,17,20,.2)}
+  .pbar{background:#fff;border-bottom:1px solid var(--line);padding:12px 16px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+  .pbody{padding:14px 16px 18px;font-size:14.5px;background:#fafaf8}
+  .pimg{height:150px;border-radius:14px;background:linear-gradient(145deg,#2a2a30,#0f0f12);margin-bottom:12px;position:relative;overflow:hidden}
+  .pimg svg{position:absolute;inset:0;margin:auto;width:110px;height:110px}
+  .pt{font-family:var(--serif);font-size:19px;line-height:1.15;margin-bottom:4px}
+  .pp{font-weight:700;font-size:20px}
+  .pp s{font-weight:400;color:var(--mute);font-size:15px;margin-left:6px}
+  .stars{color:#d98a00;font-size:14px;letter-spacing:1px}
+  .box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:10px}
+  .edd{border:2px dashed var(--accent);background:#FFF7F3}
+  .edd b{display:block}
+  .btn{display:block;background:var(--ink);color:#fff;text-align:center;border-radius:12px;padding:12px;font-weight:700;margin-top:12px;font-size:16px;border:0;width:100%;font-family:var(--sans);cursor:default}
+  .btn.acc{background:var(--accent)}
+  .okc{color:var(--ok);font-weight:700;font-size:13px}
+  .msg{font-weight:700;font-size:15px;margin:2px 0 10px}
+  .msg em{font-style:normal;color:var(--accent-d)}
+  .trk{position:relative;height:10px;background:#e6e0d4;border-radius:6px;margin:16px 42px 44px 42px}
+  .trk .fl{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:linear-gradient(90deg,var(--ok),#35a35c);transition:width .35s}
+  .nd{position:absolute;top:-8px;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid #d9d2c3;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--mute)}
+  .nd.done{background:var(--ok);border-color:var(--ok);color:#fff}
+  .nd small{position:absolute;top:30px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:12px;line-height:1.1;text-align:center;color:var(--mute);font-weight:700}
+  .nd.done small{color:var(--ok)}
+  .row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .ci{display:flex;gap:10px;align-items:center}
+  .cth{width:46px;height:46px;border-radius:10px;background:linear-gradient(145deg,#2a2a30,#0f0f12);flex:none}
+  .cth.l{background:linear-gradient(145deg,#8a5a3a,#4b2c18)}
+  .cth.e{background:linear-gradient(145deg,#d8d2c4,#9c9482)}
+  .addb{background:var(--ink);color:#fff;border:0;border-radius:9px;padding:7px 14px;font-weight:700;font-size:14px;cursor:pointer;font-family:var(--sans)}
+  .addb.on{background:var(--ok);cursor:default}
+  .chips{display:flex;gap:6px;margin-top:6px}
+  .chip{border:1px solid var(--line);border-radius:8px;padding:2px 9px;font-size:12px;font-weight:700;background:#fff}
+  .chip.s{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .hint{margin-top:10px;font-size:13px;color:var(--mute)}
+  .unl{display:none;margin-top:8px;background:var(--ok-bg);color:#14502A;border-radius:10px;padding:8px 12px;font-weight:700;font-size:14px}
+  .unl.show{display:block}
+  .pay{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;margin-top:8px}
+  .pay.on{border:2px solid var(--ok);font-weight:700}
+  .risk{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .rt{background:#FFF2D6;color:#7a5a00;border-radius:7px;padding:2px 8px;font-size:12px;font-weight:700}
+
+  /* keep table */
+  .tbl{width:100%;border-collapse:separate;border-spacing:0;margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:16px}
+  .tbl th{background:var(--dark);color:#fff;text-align:left;padding:14px 18px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans)}
+  .tbl td{padding:14px 18px;border-top:1px solid var(--line);vertical-align:top}
+  .tbl td:first-child{font-weight:700;width:34%}
+  .pillc{display:inline-block;background:var(--warn-bg);color:#7a5a00;border-radius:999px;padding:1px 10px;font-size:13px;font-weight:700;margin-right:6px}
+  .pillo{display:inline-block;background:var(--ok-bg);color:#14502A;border-radius:999px;padding:1px 10px;font-size:13px;font-weight:700;margin-right:6px}
+
+  /* numbers */
+  .nt{width:100%;border-collapse:separate;border-spacing:0;margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:16px}
+  .nt th{background:var(--dark);color:#fff;text-align:left;padding:14px 18px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--sans)}
+  .nt td{padding:14px 18px;border-top:1px solid var(--line);vertical-align:top}
+  .nt td:first-child{font-weight:700;width:22%}
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:30px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px}
+  .panel h4{font-size:22px;margin-bottom:14px}
+  .fld{margin-bottom:12px}
+  .fld label{display:block;font-size:14px;color:var(--mute);font-weight:700;margin-bottom:4px}
+  .fld input[type=number]{width:100%;font:inherit;font-size:18px;padding:9px 12px;border:1px solid #cfc8ba;border-radius:10px;background:#fff}
+  .rng{margin:14px 0}
+  .rng label{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:4px}
+  .rng input{width:100%;accent-color:var(--accent)}
+  .rng .sm{font-size:13px;color:var(--mute);font-weight:400}
+  .res{width:100%;border-collapse:collapse;font-size:16px}
+  .res th{font-size:13px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;text-align:right;padding:4px 0 8px}
+  .res th:first-child{text-align:left}
+  .res td{padding:8px 0;border-top:1px solid var(--line);text-align:right}
+  .res td:first-child{text-align:left;color:var(--ink2)}
+  .res td.w{font-weight:700;color:var(--ok)}
+  .big{margin-top:16px;background:var(--dark);color:#fff;border-radius:14px;padding:16px 18px}
+  .big b{display:block;font-family:var(--serif);font-size:30px}
+  .big span{font-size:14px;color:#c9c9d0}
+  .live{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .live span{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 16px;font-weight:700;font-size:16px}
+
+  /* next */
+  .ngrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+  .ncard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .ncard i{font-style:normal;font-family:var(--serif);font-size:30px;color:var(--accent-d);display:block;margin-bottom:6px}
+  .ncard h4{font-size:19px;font-family:var(--serif);margin-bottom:6px}
+  .ncard p{font-size:15.5px;color:var(--ink2)}
+  .cta{margin-top:34px;background:var(--dark);color:#fff;border-radius:24px;padding:38px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .cta h3{font-size:clamp(24px,3vw,34px);max-width:620px}
+  .cta p{color:#c9c9d0;margin-top:8px;font-size:16px}
+  .cta a.b{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;border-radius:14px;padding:16px 28px;font-size:18px;white-space:nowrap}
+  footer{padding:36px 0 60px;font-size:13.5px;color:var(--mute);border-top:1px solid var(--line)}
+  footer p{max-width:900px;margin-top:8px}
+
+  @media (max-width:900px){
+    body{font-size:17px}
+    .stats{grid-template-columns:1fr}
+    .jgrid,.moment,.cols,.calc{grid-template-columns:1fr}
+    .ngrid{grid-template-columns:1fr 1fr}
+    .persona{grid-template-columns:1fr}
+    .moment{gap:30px}
+    .tbl td:first-child{width:auto}
+    .nt td:first-child{width:auto}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 18px}
+    .ngrid{grid-template-columns:1fr}
+    section{padding:48px 0}
+    .tbl,.nt{display:block;overflow-x:auto}
+  }
+
+  .opt{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;margin-top:8px;cursor:pointer;width:100%;text-align:left;font:inherit;font-size:14px;color:var(--ink)}
+  .opt.sel{border:2px solid var(--ok);background:#F2FAF5}
+  .opt b{display:block;font-size:14.5px}
+  .opt span.s{font-size:12.5px;color:var(--mute)}
+  .opt .pr{font-weight:700;white-space:nowrap}
+  .opt .pr s{font-weight:400;color:var(--mute)}
+  .late{color:#9a2b0b;font-weight:700}
+  .good{color:var(--ok);font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="wrap">
+  <span class="logo">fastrr<i></i></span>
+  <a class="l" href="#karan">Meet Karan</a>
+  <a class="l" href="#journey">The journey</a>
+  <a class="l" href="#j1">Product page</a>
+  <a class="l" href="#j2">Cart</a>
+  <a class="l" href="#j3">Checkout</a>
+  <a class="l" href="#j4">Payment</a>
+  <a class="l" href="#keep">What stays</a>
+  <a class="l" href="#numbers">Numbers</a>
+  <a class="l" href="#next">Next</a>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">For Loving Crafts</div>
+  <h1>Karan's anniversary is Tuesday. Checkout decides whether the gift is there on time.</h1>
+  <p class="lead">Loving Crafts makes gifts people remember: scratch and reveal albums, miniature frames, bouquets, built around a photo and a date. Your site says 1 Million+ happy customers, and the reviews back it up. This proposal follows one gift buyer through the last, most delicate steps of his journey, the product page, cart, checkout and payment, and shows what changes when those steps run on the Shiprocket network.</p>
+  <div class="meta">
+    <div>Prepared for<b>Loving Crafts</b></div>
+    <div>Scope<b>Checkout only: product page, cart, checkout, payment</b></div>
+    <div>Stage<b>Before the demo, features only</b></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>8 lakh</b><span>Orders shipped every day on the Shiprocket network</span></div>
+    <div class="stat"><b>5 lakh</b><span>Orders a day on Fastrr Checkout</span></div>
+    <div class="stat"><b>620M+</b><span>Real delivery outcomes behind every risk tag</span></div>
+  </div>
+</div></header>
+
+<section id="karan" class="alt"><div class="wrap">
+  <div class="kick">Meet our shopper · an illustrative character</div>
+  <h2 class="t">Karan, 29. Third anniversary on Tuesday, and he has left the gift to the last week.</h2>
+  <p class="sub">It is Wednesday evening, 25 November. Karan found Loving Crafts through an Instagram reel and wants the Scratch &amp; Reveal Anniversary Album for his wife Meera. He lives in a metro, shops on his phone, and has one question that matters more than the price: will it be in his hands before Tuesday?</p>
+  <div class="persona">
+    <div class="avatar">K</div>
+    <div>
+      <b style="font-size:20px">A gift with a date on it, bought on a phone, at 9:10 pm.</b>
+      <div class="tags"><span class="tag">Gift buyer</span><span class="tag">Hard deadline</span><span class="tag">Shops on mobile</span><span class="tag">Anniversary, Tue 1 Dec</span></div>
+      <p class="small" style="margin-top:12px">Product names, prices and policies are from lovingcrafts.in as of 25 November 2026.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="journey"><div class="wrap">
+  <div class="kick">The checkout journey, at a glance</div>
+  <h2 class="t">Four moments between "this is perfect" and "it's on the way". Each one can win or lose Karan.</h2>
+  <p class="sub">Everything before this was earned by your designs, your reviews and your reels. Everything here decides whether it becomes a delivered gift.</p>
+  <div class="jgrid">
+    <div class="jcard">
+      <h4>A typical checkout layer, without delivery-network data</h4>
+      <div class="steps">
+        <div class="step"><b>Product page</b>Day ranges</div><span class="arr">›</span>
+        <div class="step"><b>Cart</b>Shipping later</div><span class="arr">›</span>
+        <div class="step"><b>Checkout</b>Login, address</div><span class="arr">›</span>
+        <div class="step"><b>Payment</b>COD rules</div><span class="arr">✕</span>
+        <div class="step"><b>Delivery</b>Not fed back</div>
+      </div>
+      <p>Acts on session and payment behaviour. What happens to the parcel does not feed back into what the next shopper sees.</p>
+    </div>
+    <div class="jcard f">
+      <h4>Fastrr Checkout, on the Shiprocket network</h4>
+      <div class="steps">
+        <div class="step"><b>Product page</b>A delivery date</div><span class="arr">⇄</span>
+        <div class="step"><b>Cart</b>Delivery options, milestone</div><span class="arr">⇄</span>
+        <div class="step"><b>Checkout</b>Pre-filled, one page</div><span class="arr">⇄</span>
+        <div class="step"><b>Payment</b>QuickPay, risk tags</div><span class="arr">⇄</span>
+        <div class="step"><b>Delivery</b>Feeds every step</div>
+      </div>
+      <p>Every step learns from real deliveries: which pincodes deliver, which addresses are good, which orders come back.</p>
+    </div>
+  </div>
+  <div class="quote">"For a gift that is made to order, a returned parcel is not a restock. It is a gift nobody will ever open."</div>
+</div></section>
+
+<section id="j1" class="alt"><div class="wrap">
+  <div class="kick">Moment 1 · The product page</div>
+  <h2 class="t">He loves the album. He wonders: "Will it reach before Tuesday?"</h2>
+  <p class="sub">Your product pages say it clearly: priority orders reach metros in 4 working days and the rest of India in 5, standard orders in 6 and 7, counted from the next day and excluding Sundays and holidays. That is accurate. But Karan has to do the calendar sums himself, at 9 pm, with an anniversary at stake.</p>
+  <div class="moment">
+    <div>
+      <div class="cols">
+        <div class="col"><h5>On Loving Crafts today (public pages)</h5><ul>
+          <li>Delivery shown as working-day ranges: priority 4 / 5 days, standard 6 / 7 days.</li>
+          <li>Counts exclude Sundays and public holidays, so the shopper works out the date.</li>
+          <li>We did not find a pincode check on the product page.</li>
+        </ul></div>
+        <div class="col f"><h5>On Fastrr</h5><ul>
+          <li><b>Dynamic EDD:</b> a real date for his pincode, for each delivery option.</li>
+          <li><b>Built from the network that ships the parcel,</b> using live courier performance, not a static rule.</li>
+          <li><b>Repeated at checkout,</b> so the promise on the page is the promise at payment.</li>
+        </ul></div>
+      </div>
+      <div class="proof"><b>2 to 5%</b><span>conversion increments seen from the delivery date widget. Live on Hidesign and Jisora.</span></div>
+    </div>
+    <div class="phone">
+      <div class="pbar"><span>Loving Crafts</span><span>☰</span></div>
+      <div class="pbody">
+        <div class="pimg" style="background:linear-gradient(145deg,#7a3b2e,#2b1410)"><svg viewBox="0 0 100 100" fill="none" stroke="#f3e6d8" stroke-width="3" stroke-linejoin="round"><rect x="22" y="22" width="56" height="56" rx="5"/><path d="M50 22v56M30 36h14M30 46h14M56 36h14M56 46h14"/></svg></div>
+        <div class="pt">Scratch &amp; Reveal Anniversary Album</div>
+        <div class="stars" style="margin-top:4px">★★★★★ <span style="color:var(--mute);letter-spacing:0">4.87 (122)</span></div>
+        <div class="pp" style="margin-top:6px">₹1,599 <s>₹2,669</s></div>
+        <div class="box edd"><b>Deliver by Mon, 30 Nov <span class="good" style="font-size:13px">· Priority</span></b><b style="margin-top:4px;font-weight:700">Or Wed, 2 Dec <span class="late" style="font-size:13px">· Standard</span></b><span class="small" style="font-size:12.5px">to 560034 · after the 1 Dec anniversary</span></div>
+        <div class="box" style="font-size:13.5px">Free shipping at ₹1,000+</div>
+        <button class="btn acc">Add to cart</button>
+        <div class="hint">Illustrative mock-up. Dates are worked out from your published timelines for a metro order placed on 25 Nov; real dates would come from live courier data.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="j2"><div class="wrap">
+  <div class="kick">Moment 2 · The cart</div>
+  <h2 class="t">Priority shipping is already your best add-on. In the cart, it can show the date it buys.</h2>
+  <p class="sub">Your site offers one upsell: "Speed up your delivery with priority shipping". The cart drawer then says "shipping calculated at checkout". For a shopper counting days, the date is what sells priority, and a gift pairing is what lifts the basket.</p>
+  <div class="moment">
+    <div>
+      <div class="cols">
+        <div class="col"><h5>On Loving Crafts today (public pages)</h5><ul>
+          <li>Priority shipping is offered as an upgrade on product pages.</li>
+          <li>Cart note: "Taxes included. Discounts and shipping calculated at checkout."</li>
+          <li>Free shipping at ₹1,000+ is a site banner, not visible in the cart as it happens.</li>
+        </ul></div>
+        <div class="col f"><h5>On Fastrr</h5><ul>
+          <li><b>Delivery options with dates:</b> "Priority, Mon 30 Nov" next to "Standard, Wed 2 Dec", so the upgrade sells itself.</li>
+          <li><b>Milestone bar</b> on your own rule: free shipping at ₹1,000 shows as unlocked, with a next step you choose.</li>
+          <li><b>Expandable AI upsell:</b> a matching bouquet or frame opens inside the cart and is added in one tap.</li>
+        </ul></div>
+      </div>
+      <p class="small" style="margin-top:14px">Try it: choose Priority, then add the bouquet. The free priority dispatch milestone at ₹3,000 and the ₹199 priority fee are examples for illustration, not your rules. Smart cart is live on Parul Garg Beauty.</p>
+      <div class="proof"><b>+6%</b><span>average order value seen from cart upsells on Fastrr brands.</span></div>
+    </div>
+    <div class="phone">
+      <div class="pbar"><span>Your cart</span><span id="cc">1 item</span></div>
+      <div class="pbody">
+        <div class="msg" id="cmsg">Add <em>₹1,401</em> more for <em>free priority dispatch</em></div>
+        <div class="trk"><div class="fl" id="cfl" style="width:0%"></div>
+          <div class="nd done" style="left:0%">✓<small>Free shipping<br>unlocked</small></div>
+          <div class="nd" id="cnd" style="left:100%">₹<small>Free priority<br>at ₹3,000</small></div>
+        </div>
+        <div class="box"><div class="ci"><div class="cth" style="background:linear-gradient(145deg,#7a3b2e,#2b1410)"></div><div style="flex:1"><div style="font-weight:700;line-height:1.15">Scratch &amp; Reveal Anniversary Album</div><div class="small" style="font-size:12.5px">30 photos · upload after ordering</div></div><b>₹1,599</b></div></div>
+        <div style="font-weight:700;margin:14px 0 2px;font-family:var(--serif);font-size:16px">Make it a gift set</div>
+        <div class="box"><div class="ci"><div class="cth" style="background:linear-gradient(145deg,#d9a6b0,#a45a6a)"></div><div style="flex:1"><div style="font-weight:700;line-height:1.15;font-size:14px">Forever Flower Bouquet</div><div class="small" style="font-size:12.5px">₹1,649 <s>₹2,749</s></div></div><button class="addb" id="addb">+ Add</button></div></div>
+        <div style="font-weight:700;margin:14px 0 0;font-family:var(--serif);font-size:16px">Delivery</div>
+        <button class="opt sel" id="oStd"><span><b>Standard · Wed, 2 Dec</b><span class="s">After the anniversary</span></span><span class="pr">Free</span></button>
+        <button class="opt" id="oPri"><span><b>Priority · Mon, 30 Nov</b><span class="s">In time for Tuesday</span></span><span class="pr" id="priPr">+₹199</span></button>
+        <div class="unl" id="unl">Free priority dispatch unlocked</div>
+        <div class="row" style="margin-top:14px"><span>Total</span><b id="ctot" style="font-size:20px">₹1,599</b></div>
+        <button class="btn">Checkout</button>
+        <div class="hint">Illustrative mock-up. Products and prices are from lovingcrafts.in; the ₹199 fee and ₹3,000 milestone are examples.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="j3" class="alt"><div class="wrap">
+  <div class="kick">Moment 3 · The checkout</div>
+  <h2 class="t">One page. Nothing to type. He is done in a few taps, and back to planning the surprise.</h2>
+  <p class="sub">Karan has ordered gifts before, and he is ordering on a phone with a deadline. Every field he types is time he does not have, and a mistyped pincode on a made-to-order gift is a problem you pay for.</p>
+  <div class="moment">
+    <div>
+      <div class="cols">
+        <div class="col"><h5>On Loving Crafts today (public pages)</h5><ul>
+          <li>Standard store checkout: shipping and discounts are calculated once the shopper reaches it.</li>
+          <li>A new shopper types name, address, pincode and phone on a phone.</li>
+          <li>Photos are uploaded after ordering, through an SMS link or the "Send Photos" page.</li>
+        </ul></div>
+        <div class="col f"><h5>On Fastrr</h5><ul>
+          <li><b>Address pre-fill above 95%,</b> from addresses actually delivered across the Shiprocket network.</li>
+          <li><b>The same delivery date at checkout</b> that he picked in the cart.</li>
+          <li><b>SSO:</b> returning shoppers skip OTPs, address entry and payment selection.</li>
+          <li><b>One page, in your look,</b> so it still feels like Loving Crafts.</li>
+        </ul></div>
+      </div>
+      <div class="proof"><b>61% to 89%</b><span>address pre-fill at a live apparel brand, with prepaid 13% to 23% and conversion 0.37% to 0.6%. A different category, so results vary.</span></div>
+    </div>
+    <div class="phone">
+      <div class="pbar"><span>Secure checkout</span><span class="okc">● Fastrr</span></div>
+      <div class="pbody">
+        <div class="box" style="margin-top:0"><b>Welcome back, Karan</b><br><span class="small" style="font-size:13px">Signed in with one tap</span></div>
+        <div class="box"><span class="small" style="font-size:12.5px">Deliver to</span><br><b>Home</b> · pre-filled from a previous delivery<br><span class="small" style="font-size:13px">Bengaluru 560034</span> <span class="okc">Pre-filled</span></div>
+        <div class="box edd"><b>Priority · Mon, 30 Nov</b><span class="small" style="font-size:13px">The date he chose in the cart</span></div>
+        <div class="box"><div class="row"><span>Album + bouquet</span><b>₹3,248</b></div><div class="okc">Free shipping · free priority dispatch</div></div>
+        <div class="pay on">UPI · pre-selected, one tap</div>
+        <button class="btn acc">Pay ₹3,248</button>
+        <div class="hint">Illustrative. Name, address, date and total are examples.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="j4"><div class="wrap">
+  <div class="kick">Moment 4 · Payment and risk</div>
+  <h2 class="t">He pays in one tap. Behind the scenes, every order is read before it is made.</h2>
+  <p class="sub">Most shoppers want to pay and move on. But a personalised album that comes back cannot be resold, so one returned order costs you the shipping and the product. Your site offers partial COD to protect against exactly this. The network can tell which orders are likely to come back before you start making them.</p>
+  <div class="moment">
+    <div>
+      <div class="cols">
+        <div class="col"><h5>On Loving Crafts today (public pages)</h5><ul>
+          <li>Partial COD: an advance up front, the rest on delivery.</li>
+          <li>Two pages word it differently: "50% upfront" on one, "₹500 in advance" on another.</li>
+          <li>Prepaid orders get the same flow as everyone else.</li>
+        </ul></div>
+        <div class="col f"><h5>On Fastrr</h5><ul>
+          <li><b>QuickPay:</b> one-tap UPI through his preferred app, pre-selected.</li>
+          <li><b>Payment personalisation:</b> each shopper sees the method and offer they are most likely to pay with, turning COD intent into prepaid.</li>
+          <li><b>RTO risk tags</b> from pincode, address and buyer history, scored against real delivery outcomes before the order is made.</li>
+          <li><b>Pay After Delivery:</b> a hesitant shopper approves with UPI and is charged only after delivery. Live on Coitonic.</li>
+          <li><b>0% MDR on prepaid</b> with eligible gateways. Commercials by payment mode are shared separately.</li>
+        </ul></div>
+      </div>
+      <div class="proof"><b>RTO down 17%</b><span>with risk tags on Fastrr brands. Pay After Delivery cut COD by 10%, with 7% of orders on PAD. Results vary by brand.</span></div>
+    </div>
+    <div class="phone">
+      <div class="pbar"><span>Payment</span><span class="small" style="font-size:13px">₹3,248</span></div>
+      <div class="pbody">
+        <div class="pay on"><div class="row"><span>UPI · GPay</span><span class="okc">Pre-selected</span></div></div>
+        <div class="pay">Cards and netbanking</div>
+        <div class="pay"><div class="row"><span>Partial COD</span><span class="small" style="font-size:12.5px">advance + balance</span></div></div>
+        <div class="box" style="margin-top:14px"><b style="font-size:14px">Behind the scenes, before it is made</b>
+          <div class="risk"><span class="rt">First-time buyer</span><span class="rt">Pincode: high refusal</span><span class="rt">COD</span></div>
+          <div class="small" style="font-size:13px;margin-top:8px">Ask for full prepayment, or offer Pay After Delivery.</div></div>
+        <div class="pay" style="border-style:dashed"><div style="font-weight:700">Pay After Delivery</div><div class="small" style="font-size:13px">Approve with UPI. Charged only after delivery.</div></div>
+        <div class="hint">Illustrative mock-up. Risk tags are not shown to shoppers.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="keep" class="alt"><div class="wrap">
+  <div class="kick">What stays Loving Crafts</div>
+  <h2 class="t">We read your site closely. These are the things to keep, and what we will confirm in the demo.</h2>
+  <p class="sub">Your customers love the gifts, the packaging and the personal touch. Anything we add should fit that. This is the list we would bring to the call, taken from your own published pages.</p>
+  <table class="tbl">
+    <tr><th>Loving Crafts today</th><th>What we will confirm in the demo</th></tr>
+    <tr><td>Free shipping at ₹1,000+</td><td><span class="pillo">Keep</span>Shown in the cart as unlocked, so it never reads as "calculated later".</td></tr>
+    <tr><td>Priority shipping as an upgrade</td><td><span class="pillo">Keep</span>Shown as a delivery option with its date, in the cart and at checkout.</td></tr>
+    <tr><td>Partial COD (₹500 or 50% in advance)</td><td><span class="pillc">Confirm</span>Which version applies, and how a partial COD flow is set up with Fastrr. Pay After Delivery is the alternative to compare.</td></tr>
+    <tr><td>Photos uploaded after ordering, by SMS link</td><td><span class="pillc">Confirm</span>Order confirmation and the SMS link carry across exactly as today.</td></tr>
+    <tr><td>Delivery counted from the next day, excluding Sundays and holidays</td><td><span class="pillc">Confirm</span>How the date handles production time and the wait for photos.</td></tr>
+    <tr><td>40% off shown on products, no coupon codes visible</td><td><span class="pillo">Keep</span>Discounts and shipping shown at checkout, not "calculated at checkout".</td></tr>
+    <tr><td>Order tracking on lovingcrafts.org</td><td><span class="pillc">Confirm</span>Which domain tracking and order status live on, and how the links carry across.</td></tr>
+    <tr><td>Your payment gateway</td><td><span class="pillc">Confirm</span>Zero MDR on prepaid orders folds the gateway fee into one checkout fee and works with a defined set of gateways. We will check yours.</td></tr>
+  </table>
+</div></section>
+
+<section id="numbers"><div class="wrap">
+  <div class="kick">From journey to numbers</div>
+  <h2 class="t">Every moment above has a number behind it. Then you can put in your own.</h2>
+  <p class="sub">First, the results Fastrr brands have seen at each step. Then a calculator you can fill with Loving Crafts' real figures. It is a what-if, not a promise.</p>
+  <table class="nt">
+    <tr><th>Moment in Karan's journey</th><th>What changes</th><th>Result seen on Fastrr</th></tr>
+    <tr><td>Product page</td><td>Dynamic EDD per delivery option</td><td>2 to 5% conversion increments</td></tr>
+    <tr><td>Cart</td><td>Delivery options with dates, milestone bar, AI upsell</td><td>Average order value up 6% from upsell</td></tr>
+    <tr><td>Checkout</td><td>Address pre-fill above 95%, SSO</td><td>Apparel brand: pre-fill 61% to 89%, prepaid 13% to 23%, conversion 0.37% to 0.6%</td></tr>
+    <tr><td>Payment</td><td>QuickPay, payment personalisation, Pay After Delivery</td><td>Prepaid incentive up 11% in prepaid orders. PAD cut COD by 10%, with 7% of orders on PAD</td></tr>
+    <tr><td>Risk</td><td>RTO risk tags</td><td>RTO down 17%</td></tr>
+  </table>
+  <p class="small" style="margin-top:12px">Results are from Fastrr brands in other categories and will vary with traffic, catalogue and mix. Loving Crafts' own results would be measured, not assumed.</p>
+
+  <div class="calc">
+    <div class="panel">
+      <h4>Put in Loving Crafts' numbers</h4>
+      <p class="small" style="margin-bottom:14px">The values below are placeholders, not Loving Crafts' data. Replace them.</p>
+      <div class="fld"><label for="o">Orders per month</label><input id="o" type="number" value="8000" min="0"></div>
+      <div class="fld"><label for="a">Average order value (₹)</label><input id="a" type="number" value="1800" min="0"></div>
+      <div class="fld"><label for="r">Current RTO rate (%)</label><input id="r" type="number" value="8" min="0" max="100" step="0.1"></div>
+      <div class="fld"><label for="k">Cost of one RTO order (₹), shipping plus the made-to-order item that cannot be resold</label><input id="k" type="number" value="600" min="0"></div>
+      <div class="rng"><label for="d"><span>RTO reduction</span><span id="dv">8%</span></label><input id="d" type="range" min="0" max="30" value="8"><div class="sm">Relative, so 8% becomes 7.4%. Proof point: down 17%.</div></div>
+      <div class="rng"><label for="c"><span>Conversion lift</span><span id="cv">3%</span></label><input id="c" type="range" min="0" max="10" value="3"><div class="sm">More orders from the same traffic. Proof point: 2 to 5% from the delivery date alone.</div></div>
+    </div>
+    <div class="panel">
+      <h4>What-if, per month</h4>
+      <table class="res">
+        <tr><th></th><th>Today</th><th>With Fastrr</th></tr>
+        <tr><td>Orders</td><td id="t1"></td><td id="f1"></td></tr>
+        <tr><td>RTO orders</td><td id="t2"></td><td id="f2" class="w"></td></tr>
+        <tr><td>Delivered orders</td><td id="t3"></td><td id="f3" class="w"></td></tr>
+        <tr><td>Delivered revenue</td><td id="t4"></td><td id="f4" class="w"></td></tr>
+        <tr><td>RTO cost</td><td id="t5"></td><td id="f5" class="w"></td></tr>
+      </table>
+      <div class="big"><span>More delivered revenue, per month</span><b id="gm"></b><span id="gy"></span></div>
+      <p class="small" style="margin-top:12px">An illustration from the inputs you enter. It assumes the same traffic, order value and mix, and does not account for Fastrr's fees or any commercial terms.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:44px;font-size:26px">Where these features run today</h3>
+  <div class="live"><span>Delivery date: Hidesign, Jisora</span><span>Smart cart: Parul Garg Beauty</span><span>Pay After Delivery: Coitonic</span></div>
+  <p class="small" style="margin-top:10px">Delivery dates, pre-fill, payments and risk tags are drawn from real completed shipments across the Shiprocket network.</p>
+</div></section>
+
+<section id="next" class="alt"><div class="wrap">
+  <div class="kick">Getting started</div>
+  <h2 class="t">No commitment. No disruption. Just data.</h2>
+  <p class="sub">We would like to show you this on Loving Crafts' own pages, and let the numbers decide.</p>
+  <div class="ngrid">
+    <div class="ncard"><i>01</i><h4>See it on your pages</h4><p>A 30-minute Google Meet showing Karan's journey on your own product page, cart and checkout.</p></div>
+    <div class="ncard"><i>02</i><h4>Choose where to start</h4><p>The delivery date and cart first, the full checkout, or keep your checkout and add address pre-fill and NDR tags.</p></div>
+    <div class="ncard"><i>03</i><h4>Test side by side</h4><p>Run Fastrr on a share of traffic next to your current checkout, and measure conversion, prepaid share and RTO.</p></div>
+    <div class="ncard"><i>04</i><h4>Decide on the data</h4><p>Read the results together, and decide how far to take it.</p></div>
+  </div>
+  <div class="cta">
+    <div><h3>Let's walk Karan through Loving Crafts' checkout together.</h3><p>30 minutes on Google Meet, around your calendar. It helps to bring monthly orders, COD and RTO rates, and your payment gateway.</p></div>
+    <a class="b" href="mailto:kutiarunava@gmail.com?subject=Fastrr%20x%20Loving%20Crafts%20demo">Book a demo</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <b style="color:var(--ink);font-size:15px">Prepared by Arunava Nag, Manager, Enterprise Sales, Fastrr by Shiprocket</b>
+  <p>Prepared for Loving Crafts. Karan is an illustrative character. Mock-ups are illustrative and are not Loving Crafts' live pages. Product names, prices, delivery timelines and policies are as published on lovingcrafts.in on 25 November 2026 and may change. Delivery dates in the mock-ups are worked out from those published timelines. Results quoted are from Fastrr brands in other categories and will vary. The calculator uses placeholder inputs and is not a forecast.</p>
+</div></footer>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.nav a.l'));
+  var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){links.forEach(function(a){a.classList.remove('on')});var a=map[e.target.id];if(a)a.classList.add('on')}
+    })},{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+  }
+
+  /* interactive cart */
+  var ALBUM=1599,BOUQUET=1649,MILE=3000,PRI=199;
+  var hasB=false,pri=false;
+  function inr(n){return '₹'+n.toLocaleString('en-IN')}
+  function render(){
+    var sub=ALBUM+(hasB?BOUQUET:0);
+    var free=sub>=MILE;
+    var fee=(pri&&!free)?PRI:0;
+    var total=sub+fee;
+    document.getElementById('ctot').textContent=inr(total);
+    document.getElementById('cc').textContent=hasB?'2 items':'1 item';
+    var msg=document.getElementById('cmsg'),unl=document.getElementById('unl'),nd=document.getElementById('cnd');
+    document.getElementById('cfl').style.width=Math.min(100,Math.round(sub/MILE*100))+'%';
+    if(free){msg.innerHTML='<em>Free priority dispatch</em> unlocked';unl.classList.add('show');nd.classList.add('done')}
+    else{msg.innerHTML='Add <em>'+inr(MILE-sub)+'</em> more for <em>free priority dispatch</em>';unl.classList.remove('show');nd.classList.remove('done')}
+    document.getElementById('oStd').classList.toggle('sel',!pri);
+    document.getElementById('oPri').classList.toggle('sel',pri);
+    document.getElementById('priPr').innerHTML=free?'<s>+₹199</s> Free':'+₹199';
+  }
+  var ab=document.getElementById('addb');
+  ab.addEventListener('click',function(){hasB=!hasB;ab.classList.toggle('on',hasB);ab.textContent=hasB?'Added ✓':'+ Add';render()});
+  document.getElementById('oStd').addEventListener('click',function(){pri=false;render()});
+  document.getElementById('oPri').addEventListener('click',function(){pri=true;render()});
+  render();
+
+  /* calculator */
+  function fmt(n){
+    n=Math.round(n);
+    if(n>=1e7)return '₹'+(n/1e7).toFixed(2)+' Cr';
+    if(n>=1e5)return '₹'+(n/1e5).toFixed(2)+' lakh';
+    return '₹'+n.toLocaleString('en-IN');
+  }
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function calc(){
+    var O=num('o'),A=num('a'),R=num('r')/100,K=num('k'),d=num('d')/100,c=num('c')/100;
+    document.getElementById('dv').textContent=Math.round(d*100)+'%';
+    document.getElementById('cv').textContent=Math.round(c*100)+'%';
+    var tR=O*R,tD=O-tR,tRev=tD*A,tCost=tR*K;
+    var O2=O*(1+c),R2=R*(1-d),fR=O2*R2,fD=O2-fR,fRev=fD*A,fCost=fR*K;
+    function set(id,v){document.getElementById(id).textContent=v}
+    set('t1',Math.round(O).toLocaleString('en-IN'));set('f1',Math.round(O2).toLocaleString('en-IN'));
+    set('t2',Math.round(tR).toLocaleString('en-IN'));set('f2',Math.round(fR).toLocaleString('en-IN'));
+    set('t3',Math.round(tD).toLocaleString('en-IN'));set('f3',Math.round(fD).toLocaleString('en-IN'));
+    set('t4',fmt(tRev));set('f4',fmt(fRev));
+    set('t5',fmt(tCost));set('f5',fmt(fCost));
+    var g=fRev-tRev;
+    set('gm',fmt(g));set('gy','Over 12 months: '+fmt(g*12));
+  }
+  ['o','a','r','k','d','c'].forEach(function(id){document.getElementById(id).addEventListener('input',calc)});
+  calc();
+})();
+</script>
+</body>
+</html>
