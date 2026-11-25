@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fastrr x Loving Crafts: a checkout proposal</title>
+<title>Fastrr x Loving Crafts: a customer journey proposal</title>
 <style>
   :root{
     --ink:#111114; --ink2:#3b3b42; --mute:#6f6f78; --paper:#F5F1EA; --card:#FFFFFF; --line:#E3DDD2;
@@ -199,103 +199,168 @@
   .opt .pr s{font-weight:400;color:var(--mute)}
   .late{color:#9a2b0b;font-weight:700}
   .good{color:var(--ok);font-weight:700}
+
+  .sub2{font-size:19px;color:var(--mute);margin-bottom:14px;font-family:var(--serif);font-style:italic}
+  .idx{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+  .idx a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .idx a:hover{border-color:var(--accent)}
+  .idx i{font-style:normal;font-family:var(--serif);font-size:22px;color:var(--accent-d);margin-right:8px}
+  .idx b{font-size:17px}
+  .idx span{display:block;font-size:13.5px;color:var(--mute);margin-top:2px;padding-left:30px}
+  .ts{font-size:15px;color:var(--mute);font-weight:700;margin-bottom:8px;letter-spacing:.02em}
+  .feat{margin-top:18px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:14px}
+  section.alt .feat{background:var(--paper)}
+  .feat h4{font-family:var(--sans);font-size:17px;margin-bottom:4px}
+  .feat p{font-size:16px;color:var(--ink2)}
+  .feat .src{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:var(--accent-d)}
+  .pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+  .pc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+  .pc .av{width:48px;height:48px;border-radius:50%;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:22px;margin-bottom:12px}
+  .pc h4{font-size:20px;margin-bottom:2px}
+  .pc .loc{font-size:14px;color:var(--mute);margin-bottom:10px}
+  .pc p{font-size:16px;color:var(--ink2)}
+  .pill{display:inline-block;background:#FFF1EA;color:var(--accent-d);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700;margin:10px 0 8px}
+  .pc .out{font-weight:700;color:var(--ink);font-size:15.5px}
+  .igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  .ig{background:var(--dark);color:#fff;border-radius:16px;padding:22px}
+  .ig b{display:block;font-family:var(--serif);font-size:36px;line-height:1.05}
+  .ig span{display:block;margin-top:8px;font-size:15px;color:#cfcfd6}
+  .ccards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+  .cc h4{font-size:18px;margin-bottom:12px}
+  .cc .r{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:15.5px}
+  .cc .r span:first-child{color:var(--mute)}
+  .cc .r b{font-variant-numeric:tabular-nums}
+  .wa{background:#ECE5DD;border-radius:14px;padding:12px}
+  .bub{background:#fff;border-radius:4px 12px 12px 12px;padding:9px 12px;font-size:14px;margin-bottom:8px;max-width:92%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+  .bub b{display:block;font-size:12.5px;color:var(--accent-d);margin-bottom:2px}
+  .bub .t{display:block;text-align:right;font-size:11px;color:var(--mute);margin-top:2px}
+  .bub .lk{display:block;margin-top:6px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;text-align:center;font-weight:700;color:#0a6e8a;font-size:13.5px}
+  .ban{background:var(--dark);color:#fff;border-radius:10px;padding:9px 12px;font-size:13.5px;margin-bottom:10px}
+  .ban b{color:#ffb59b}
+  .wo{background:#fff;border:1px solid var(--line)}
+  @media (max-width:900px){.idx,.pcards,.igrid,.ccards{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.idx,.pcards,.igrid,.ccards{grid-template-columns:1fr}}
+  .stats.s4{grid-template-columns:repeat(4,1fr)}
+  .ngrid.n3{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:900px){.stats.s4{grid-template-columns:1fr 1fr}.ngrid.n3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="nav"><div class="wrap">
   <span class="logo">fastrr<i></i></span>
-  <a class="l" href="#karan">Meet Karan</a>
-  <a class="l" href="#journey">The journey</a>
-  <a class="l" href="#j1">Product page</a>
-  <a class="l" href="#j2">Cart</a>
-  <a class="l" href="#j3">Checkout</a>
-  <a class="l" href="#j4">Payment</a>
-  <a class="l" href="#keep">What stays</a>
-  <a class="l" href="#numbers">Numbers</a>
-  <a class="l" href="#next">Next</a>
+  <a class="l" href="#c1">Arrives</a>
+  <a class="l" href="#c2">Product page</a>
+  <a class="l" href="#c3">Cart</a>
+  <a class="l" href="#c4">Checkout</a>
+  <a class="l" href="#c5">Payment</a>
+  <a class="l" href="#c6">After</a>
+  <a class="l" href="#others">Other shoppers</a>
+  <a class="l" href="#table">Whole journey</a>
+  <a class="l" href="#impact">Impact</a>
+  <a class="l" href="#live">Getting live</a>
 </div></div>
 
 <header class="hero"><div class="wrap">
   <div class="eyebrow">For Loving Crafts</div>
-  <h1>Karan's anniversary is Tuesday. Checkout decides whether the gift is there on time.</h1>
-  <p class="lead">Loving Crafts makes gifts people remember: scratch and reveal albums, miniature frames, bouquets, built around a photo and a date. Your site says 1 Million+ happy customers, and the reviews back it up. This proposal follows one gift buyer through the last, most delicate steps of his journey, the product page, cart, checkout and payment, and shows what changes when those steps run on the Shiprocket network.</p>
+  <div class="sub2">A Customer Journey Proposal</div>
+  <h1>What if Karan's anniversary gift reached him on time, and he knew it before he paid?</h1>
+  <p class="lead">Loving Crafts turns a photo and a date into a gift people keep. Your site says 1 Million+ happy customers, and the reviews back it up. This proposal follows one shopper, Karan, from the moment he lands on your site to the moment the gift arrives, and shows what Fastrr adds at each step.</p>
   <div class="meta">
     <div>Prepared for<b>Loving Crafts</b></div>
-    <div>Scope<b>Checkout only: product page, cart, checkout, payment</b></div>
-    <div>Stage<b>Before the demo, features only</b></div>
+    <div>Format<b>One illustrative shopper, six chapters</b></div>
+    <div>Scope<b>Product page, cart, checkout, payment and after</b></div>
   </div>
-  <div class="stats">
+  <div class="stats s4">
     <div class="stat"><b>8 lakh</b><span>Orders shipped every day on the Shiprocket network</span></div>
     <div class="stat"><b>5 lakh</b><span>Orders a day on Fastrr Checkout</span></div>
-    <div class="stat"><b>620M+</b><span>Real delivery outcomes behind every risk tag</span></div>
+    <div class="stat"><b>95%+</b><span>Address pre-fill at checkout</span></div>
+    <div class="stat"><b>40-45%</b><span>Anonymous visitors identified</span></div>
   </div>
 </div></header>
 
-<section id="karan" class="alt"><div class="wrap">
-  <div class="kick">Meet our shopper · an illustrative character</div>
-  <h2 class="t">Karan, 29. Third anniversary on Tuesday, and he has left the gift to the last week.</h2>
-  <p class="sub">It is Wednesday evening, 25 November. Karan found Loving Crafts through an Instagram reel and wants the Scratch &amp; Reveal Anniversary Album for his wife Meera. He lives in a metro, shops on his phone, and has one question that matters more than the price: will it be in his hands before Tuesday?</p>
+<section class="alt"><div class="wrap">
+  <div class="kick">How to read this proposal</div>
+  <h2 class="t">Six chapters, one evening, one deadline.</h2>
   <div class="persona">
     <div class="avatar">K</div>
     <div>
-      <b style="font-size:20px">A gift with a date on it, bought on a phone, at 9:10 pm.</b>
-      <div class="tags"><span class="tag">Gift buyer</span><span class="tag">Hard deadline</span><span class="tag">Shops on mobile</span><span class="tag">Anniversary, Tue 1 Dec</span></div>
-      <p class="small" style="margin-top:12px">Product names, prices and policies are from lovingcrafts.in as of 25 November 2026.</p>
+      <b style="font-size:20px">Karan, 29, Bengaluru. Third anniversary on Tuesday 1 December.</b>
+      <p class="small" style="margin-top:8px;font-size:16px">He saw an Instagram reel for the Scratch &amp; Reveal Anniversary Album, and he has left the gift to the last week. He shops on his phone and has one question that matters more than the price: will it reach him before Tuesday?</p>
+      <div class="tags"><span class="tag">Gift buyer</span><span class="tag">Hard deadline</span><span class="tag">Shops on mobile</span></div>
     </div>
   </div>
-</div></section>
-
-<section id="journey"><div class="wrap">
-  <div class="kick">The checkout journey, at a glance</div>
-  <h2 class="t">Four moments between "this is perfect" and "it's on the way". Each one can win or lose Karan.</h2>
-  <p class="sub">Everything before this was earned by your designs, your reviews and your reels. Everything here decides whether it becomes a delivered gift.</p>
-  <div class="jgrid">
-    <div class="jcard">
-      <h4>A typical checkout layer, without delivery-network data</h4>
-      <div class="steps">
-        <div class="step"><b>Product page</b>Day ranges</div><span class="arr">›</span>
-        <div class="step"><b>Cart</b>Shipping later</div><span class="arr">›</span>
-        <div class="step"><b>Checkout</b>Login, address</div><span class="arr">›</span>
-        <div class="step"><b>Payment</b>COD rules</div><span class="arr">✕</span>
-        <div class="step"><b>Delivery</b>Not fed back</div>
-      </div>
-      <p>Acts on session and payment behaviour. What happens to the parcel does not feed back into what the next shopper sees.</p>
-    </div>
-    <div class="jcard f">
-      <h4>Fastrr Checkout, on the Shiprocket network</h4>
-      <div class="steps">
-        <div class="step"><b>Product page</b>A delivery date</div><span class="arr">⇄</span>
-        <div class="step"><b>Cart</b>Delivery options, milestone</div><span class="arr">⇄</span>
-        <div class="step"><b>Checkout</b>Pre-filled, one page</div><span class="arr">⇄</span>
-        <div class="step"><b>Payment</b>QuickPay, risk tags</div><span class="arr">⇄</span>
-        <div class="step"><b>Delivery</b>Feeds every step</div>
-      </div>
-      <p>Every step learns from real deliveries: which pincodes deliver, which addresses are good, which orders come back.</p>
-    </div>
+  <div class="idx">
+    <a href="#c1"><i>1</i><b>Arrives</b><span>Visitor recognition</span></a>
+    <a href="#c2"><i>2</i><b>Product page</b><span>Delivery date (EDD)</span></a>
+    <a href="#c3"><i>3</i><b>Cart</b><span>Delivery options, milestone, AI upsell</span></a>
+    <a href="#c4"><i>4</i><b>Checkout</b><span>Pre-fill, SSO, one page</span></a>
+    <a href="#c5"><i>5</i><b>Payment</b><span>QuickPay, risk tags, Pay After Delivery</span></a>
+    <a href="#c6"><i>6</i><b>After</b><span>Delivery promise, failed-delivery tags</span></a>
   </div>
-  <div class="quote">"For a gift that is made to order, a returned parcel is not a restock. It is a gift nobody will ever open."</div>
+  <p class="small" style="margin-top:16px">Everything about Loving Crafts comes from lovingcrafts.in as of 25 November 2026. Karan, the screens and the messages are illustrative.</p>
 </div></section>
 
-<section id="j1" class="alt"><div class="wrap">
-  <div class="kick">Moment 1 · The product page</div>
-  <h2 class="t">He loves the album. He wonders: "Will it reach before Tuesday?"</h2>
-  <p class="sub">Your product pages say it clearly: priority orders reach metros in 4 working days and the rest of India in 5, standard orders in 6 and 7, counted from the next day and excluding Sundays and holidays. That is accurate. But Karan has to do the calendar sums himself, at 9 pm, with an anniversary at stake.</p>
+<!-- CHAPTER 1 -->
+<section id="c1"><div class="wrap">
+  <div class="kick">Chapter 1 · Arrives</div>
+  <div class="ts">Wed 25 Nov · 8:52 pm</div>
+  <h2 class="t">Karan lands from a reel. The page already knows where he is.</h2>
+  <p class="sub">Most of your traffic comes in cold. A shopper from a reel has no account and no history with you, so the first screens treat him like a stranger, and the delivery question waits until checkout.</p>
   <div class="moment">
     <div>
       <div class="cols">
-        <div class="col"><h5>On Loving Crafts today (public pages)</h5><ul>
-          <li>Delivery shown as working-day ranges: priority 4 / 5 days, standard 6 / 7 days.</li>
-          <li>Counts exclude Sundays and public holidays, so the shopper works out the date.</li>
-          <li>We did not find a pincode check on the product page.</li>
+        <div class="col wo"><h5>Without Fastrr</h5><ul>
+          <li>Anonymous visitor, generic page.</li>
+          <li>The delivery date appears only once he has typed an address.</li>
+          <li>Shipping and discounts are "calculated at checkout".</li>
         </ul></div>
-        <div class="col f"><h5>On Fastrr</h5><ul>
-          <li><b>Dynamic EDD:</b> a real date for his pincode, for each delivery option.</li>
-          <li><b>Built from the network that ships the parcel,</b> using live courier performance, not a static rule.</li>
-          <li><b>Repeated at checkout,</b> so the promise on the page is the promise at payment.</li>
+        <div class="col f"><h5>With Fastrr</h5><ul>
+          <li>The network recognises a share of anonymous visitors, so a pincode-aware experience can start on the first page.</li>
+          <li>His delivery date is ready before he asks.</li>
+          <li>Free shipping at ₹1,000+ is shown as it applies.</li>
         </ul></div>
       </div>
-      <div class="proof"><b>2 to 5%</b><span>conversion increments seen from the delivery date widget. Live on Hidesign and Jisora.</span></div>
+      <div class="feat"><h4>Anonymous visitor identification</h4><p>Fastrr identifies about 40 to 45% of anonymous visitors using delivery data from the Shiprocket network, where a visitor can be matched.</p><span class="src">Live on Coitonic</span></div>
+      <div class="feat"><h4>Why it matters for gifting</h4><p>Gift buyers arrive close to a date and leave quickly if the date is unclear. Showing it early keeps the visit going.</p></div>
+    </div>
+    <div class="phone">
+      <div class="pbar"><span>Loving Crafts</span><span>☰</span></div>
+      <div class="pbody">
+        <div class="ban"><b>Delivering to 560034?</b> Priority by <b>Mon, 30 Nov</b></div>
+        <div class="pimg" style="background:linear-gradient(145deg,#7a3b2e,#2b1410);height:130px"><svg viewBox="0 0 100 100" fill="none" stroke="#f3e6d8" stroke-width="3" stroke-linejoin="round"><rect x="22" y="22" width="56" height="56" rx="5"/><path d="M50 22v56M30 36h14M30 46h14M56 36h14M56 46h14"/></svg></div>
+        <div class="pt">Anniversary gifts</div>
+        <div class="small" style="font-size:13px">Albums · Miniature frames · Bouquets · Hampers</div>
+        <div class="box" style="font-size:13.5px">Free shipping at ₹1,000+</div>
+        <div class="hint">Illustrative mock-up. The banner shows how a recognised visitor could see a date on the first page.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- CHAPTER 2 -->
+<section id="c2" class="alt"><div class="wrap">
+  <div class="kick">Chapter 2 · Product page</div>
+  <div class="ts">Wed 25 Nov · 9:03 pm</div>
+  <h2 class="t">He loves the album. He wonders: "Will it reach before Tuesday?"</h2>
+  <p class="sub">Your product pages are clear: priority orders reach metros in 4 working days and the rest of India in 5, standard orders in 6 and 7, counted from the next day and excluding Sundays and holidays. Karan has to do the calendar sums himself, at 9 pm, with an anniversary at stake.</p>
+  <div class="moment">
+    <div>
+      <div class="cols">
+        <div class="col wo"><h5>Without Fastrr (public pages today)</h5><ul>
+          <li>Delivery as working-day ranges.</li>
+          <li>Counts exclude Sundays and public holidays.</li>
+          <li>No pincode check found on the product pages we could open.</li>
+        </ul></div>
+        <div class="col f"><h5>With Fastrr</h5><ul>
+          <li>A real date for his pincode, for each delivery option.</li>
+          <li>Built from the network that ships the parcel, using live courier performance.</li>
+          <li>Repeated in the cart and at checkout.</li>
+        </ul></div>
+      </div>
+      <div class="feat"><h4>Dynamic EDD</h4><p>"Priority, Mon 30 Nov. Standard, Wed 2 Dec." Standard misses his anniversary and priority makes it, so the date sells the upgrade without a sales line.</p><span class="src">Live on Hidesign and Jisora</span></div>
+      <div class="proof"><b>2 to 5%</b><span>conversion increments seen from the delivery date widget on Fastrr brands.</span></div>
     </div>
     <div class="phone">
       <div class="pbar"><span>Loving Crafts</span><span>☰</span></div>
@@ -313,25 +378,27 @@
   </div>
 </div></section>
 
-<section id="j2"><div class="wrap">
-  <div class="kick">Moment 2 · The cart</div>
-  <h2 class="t">Priority shipping is already your best add-on. In the cart, it can show the date it buys.</h2>
-  <p class="sub">Your site offers one upsell: "Speed up your delivery with priority shipping". The cart drawer then says "shipping calculated at checkout". For a shopper counting days, the date is what sells priority, and a gift pairing is what lifts the basket.</p>
+<!-- CHAPTER 3 -->
+<section id="c3"><div class="wrap">
+  <div class="kick">Chapter 3 · Cart</div>
+  <div class="ts">Wed 25 Nov · 9:06 pm</div>
+  <h2 class="t">Priority shipping is already your best add-on. In the cart, it shows the date it buys.</h2>
+  <p class="sub">Your site offers one upsell: "Speed up your delivery with priority shipping". The cart drawer then says "shipping calculated at checkout". For a shopper counting days, the date sells priority, and a gift pairing lifts the basket.</p>
   <div class="moment">
     <div>
       <div class="cols">
-        <div class="col"><h5>On Loving Crafts today (public pages)</h5><ul>
-          <li>Priority shipping is offered as an upgrade on product pages.</li>
+        <div class="col wo"><h5>Without Fastrr (public pages today)</h5><ul>
+          <li>Priority shipping offered as an upgrade on product pages.</li>
           <li>Cart note: "Taxes included. Discounts and shipping calculated at checkout."</li>
-          <li>Free shipping at ₹1,000+ is a site banner, not visible in the cart as it happens.</li>
         </ul></div>
-        <div class="col f"><h5>On Fastrr</h5><ul>
-          <li><b>Delivery options with dates:</b> "Priority, Mon 30 Nov" next to "Standard, Wed 2 Dec", so the upgrade sells itself.</li>
-          <li><b>Milestone bar</b> on your own rule: free shipping at ₹1,000 shows as unlocked, with a next step you choose.</li>
-          <li><b>Expandable AI upsell:</b> a matching bouquet or frame opens inside the cart and is added in one tap.</li>
+        <div class="col f"><h5>With Fastrr</h5><ul>
+          <li>Delivery options with their dates, side by side.</li>
+          <li>Your free-shipping rule shown as unlocked, with a next step you choose.</li>
+          <li>A matching gift opens inside the cart.</li>
         </ul></div>
       </div>
-      <p class="small" style="margin-top:14px">Try it: choose Priority, then add the bouquet. The free priority dispatch milestone at ₹3,000 and the ₹199 priority fee are examples for illustration, not your rules. Smart cart is live on Parul Garg Beauty.</p>
+      <div class="feat"><h4>Milestone bar</h4><p>Built on your own rule: free shipping at ₹1,000 is already met, so the bar points at the next step. The free priority milestone at ₹3,000 here is an example, not your rule.</p></div>
+      <div class="feat"><h4>Expandable AI upsell</h4><p>A bouquet or frame matched to the album opens in the cart and is added in one tap. Try it in the cart: choose Priority, then add the bouquet.</p><span class="src">Smart cart live on Parul Garg Beauty</span></div>
       <div class="proof"><b>+6%</b><span>average order value seen from cart upsells on Fastrr brands.</span></div>
     </div>
     <div class="phone">
@@ -357,25 +424,27 @@
   </div>
 </div></section>
 
-<section id="j3" class="alt"><div class="wrap">
-  <div class="kick">Moment 3 · The checkout</div>
-  <h2 class="t">One page. Nothing to type. He is done in a few taps, and back to planning the surprise.</h2>
-  <p class="sub">Karan has ordered gifts before, and he is ordering on a phone with a deadline. Every field he types is time he does not have, and a mistyped pincode on a made-to-order gift is a problem you pay for.</p>
+<!-- CHAPTER 4 -->
+<section id="c4" class="alt"><div class="wrap">
+  <div class="kick">Chapter 4 · Checkout</div>
+  <div class="ts">Wed 25 Nov · 9:09 pm</div>
+  <h2 class="t">One page. Nothing to type. He is done in a few taps.</h2>
+  <p class="sub">Karan is ordering on a phone, against a deadline. Every field he types is time he does not have, and a mistyped pincode on a made-to-order gift is a problem you pay for.</p>
   <div class="moment">
     <div>
       <div class="cols">
-        <div class="col"><h5>On Loving Crafts today (public pages)</h5><ul>
-          <li>Standard store checkout: shipping and discounts are calculated once the shopper reaches it.</li>
-          <li>A new shopper types name, address, pincode and phone on a phone.</li>
-          <li>Photos are uploaded after ordering, through an SMS link or the "Send Photos" page.</li>
+        <div class="col wo"><h5>Without Fastrr (public pages today)</h5><ul>
+          <li>A new shopper types name, address, pincode and phone.</li>
+          <li>Shipping and discounts are worked out at this step.</li>
         </ul></div>
-        <div class="col f"><h5>On Fastrr</h5><ul>
-          <li><b>Address pre-fill above 95%,</b> from addresses actually delivered across the Shiprocket network.</li>
-          <li><b>The same delivery date at checkout</b> that he picked in the cart.</li>
-          <li><b>SSO:</b> returning shoppers skip OTPs, address entry and payment selection.</li>
-          <li><b>One page, in your look,</b> so it still feels like Loving Crafts.</li>
+        <div class="col f"><h5>With Fastrr</h5><ul>
+          <li>Address pre-filled for returning and recognised shoppers.</li>
+          <li>The delivery date he chose, carried through.</li>
+          <li>One page in your look.</li>
         </ul></div>
       </div>
+      <div class="feat"><h4>Address pre-fill above 95%</h4><p>Addresses come from real deliveries across the Shiprocket network, so fewer wrong pincodes and fewer parcels lost to a bad address.</p></div>
+      <div class="feat"><h4>SSO and QuickPay</h4><p>Returning shoppers skip OTPs, address entry and payment selection, and UPI is one tap.</p></div>
       <div class="proof"><b>61% to 89%</b><span>address pre-fill at a live apparel brand, with prepaid 13% to 23% and conversion 0.37% to 0.6%. A different category, so results vary.</span></div>
     </div>
     <div class="phone">
@@ -386,33 +455,35 @@
         <div class="box edd"><b>Priority · Mon, 30 Nov</b><span class="small" style="font-size:13px">The date he chose in the cart</span></div>
         <div class="box"><div class="row"><span>Album + bouquet</span><b>₹3,248</b></div><div class="okc">Free shipping · free priority dispatch</div></div>
         <div class="pay on">UPI · pre-selected, one tap</div>
-        <button class="btn acc">Pay ₹3,248</button>
+        <button class="btn acc">Place order · ₹3,248</button>
         <div class="hint">Illustrative. Name, address, date and total are examples.</div>
       </div>
     </div>
   </div>
 </div></section>
 
-<section id="j4"><div class="wrap">
-  <div class="kick">Moment 4 · Payment and risk</div>
+<!-- CHAPTER 5 -->
+<section id="c5"><div class="wrap">
+  <div class="kick">Chapter 5 · Payment and risk</div>
+  <div class="ts">Wed 25 Nov · 9:10 pm</div>
   <h2 class="t">He pays in one tap. Behind the scenes, every order is read before it is made.</h2>
-  <p class="sub">Most shoppers want to pay and move on. But a personalised album that comes back cannot be resold, so one returned order costs you the shipping and the product. Your site offers partial COD to protect against exactly this. The network can tell which orders are likely to come back before you start making them.</p>
+  <p class="sub">A personalised album that comes back cannot be resold, so one returned order costs you the shipping and the product. Your site offers partial COD to protect against this. The network can tell which orders are likely to come back before you start making them.</p>
   <div class="moment">
     <div>
       <div class="cols">
-        <div class="col"><h5>On Loving Crafts today (public pages)</h5><ul>
-          <li>Partial COD: an advance up front, the rest on delivery.</li>
-          <li>Two pages word it differently: "50% upfront" on one, "₹500 in advance" on another.</li>
-          <li>Prepaid orders get the same flow as everyone else.</li>
+        <div class="col wo"><h5>Without Fastrr (public pages today)</h5><ul>
+          <li>Partial COD with an advance up front.</li>
+          <li>Two pages word it differently: "50% upfront" and "₹500 in advance".</li>
         </ul></div>
-        <div class="col f"><h5>On Fastrr</h5><ul>
-          <li><b>QuickPay:</b> one-tap UPI through his preferred app, pre-selected.</li>
-          <li><b>Payment personalisation:</b> each shopper sees the method and offer they are most likely to pay with, turning COD intent into prepaid.</li>
-          <li><b>RTO risk tags</b> from pincode, address and buyer history, scored against real delivery outcomes before the order is made.</li>
-          <li><b>Pay After Delivery:</b> a hesitant shopper approves with UPI and is charged only after delivery. Live on Coitonic.</li>
-          <li><b>0% MDR on prepaid</b> with eligible gateways. Commercials by payment mode are shared separately.</li>
+        <div class="col f"><h5>With Fastrr</h5><ul>
+          <li>QuickPay and payment personalisation.</li>
+          <li>RTO risk tags before the order is made.</li>
+          <li>Pay After Delivery for hesitant shoppers.</li>
         </ul></div>
       </div>
+      <div class="feat"><h4>RTO risk tags</h4><p>Scored from pincode, address and buyer history against real delivery outcomes, so a risky first-time COD order can be asked to prepay before you make it.</p></div>
+      <div class="feat"><h4>Pay After Delivery</h4><p>A hesitant shopper approves with UPI and is charged only after delivery.</p><span class="src">Live on Coitonic</span></div>
+      <div class="feat"><h4>0% MDR on prepaid</h4><p>With eligible gateways, the gateway fee is folded into one checkout fee. Commercials by payment mode are shared separately.</p></div>
       <div class="proof"><b>RTO down 17%</b><span>with risk tags on Fastrr brands. Pay After Delivery cut COD by 10%, with 7% of orders on PAD. Results vary by brand.</span></div>
     </div>
     <div class="phone">
@@ -431,87 +502,128 @@
   </div>
 </div></section>
 
-<section id="keep" class="alt"><div class="wrap">
-  <div class="kick">What stays Loving Crafts</div>
-  <h2 class="t">We read your site closely. These are the things to keep, and what we will confirm in the demo.</h2>
-  <p class="sub">Your customers love the gifts, the packaging and the personal touch. Anything we add should fit that. This is the list we would bring to the call, taken from your own published pages.</p>
+<!-- CHAPTER 6 -->
+<section id="c6" class="alt"><div class="wrap">
+  <div class="kick">Chapter 6 · After</div>
+  <div class="ts">Thu 26 Nov onwards</div>
+  <h2 class="t">The date he saw is the date he gets, and a missed delivery is caught early.</h2>
+  <p class="sub">After the order, Karan uploads his photos through your SMS link and waits. The promise he saw at checkout is what he measures everything against, and a failed delivery the day before an anniversary is the worst possible outcome.</p>
+  <div class="moment">
+    <div>
+      <div class="cols">
+        <div class="col wo"><h5>Without Fastrr (public pages today)</h5><ul>
+          <li>Photos uploaded through an SMS link or the "Send Photos" page.</li>
+          <li>Tracking links on lovingcrafts.org.</li>
+        </ul></div>
+        <div class="col f"><h5>With Fastrr</h5><ul>
+          <li>The same delivery date, tracked through the network.</li>
+          <li>Failed-delivery (NDR) tags so a bad address or an absent buyer is flagged early.</li>
+          <li>One-tap reorder next occasion through SSO.</li>
+        </ul></div>
+      </div>
+      <div class="feat"><h4>NDR tags</h4><p>When a delivery attempt fails, the reason is tagged and acted on quickly, so the gift is not sent back a day before the occasion.</p></div>
+      <div class="feat"><h4>Reorder with SSO</h4><p>For Meera's birthday in March, Karan signs in with one tap and his address is already there.</p></div>
+      <p class="small" style="margin-top:14px">We will confirm in the demo which post-order messages run through Fastrr and which stay with your current setup.</p>
+    </div>
+    <div class="phone">
+      <div class="pbar"><span>Messages</span><span class="small" style="font-size:13px">Loving Crafts</span></div>
+      <div class="pbody">
+        <div class="wa">
+          <div class="bub"><b>Order confirmed</b>Karan, your album is booked. Delivery by Mon, 30 Nov. Please send your photos.<span class="lk">Upload photos</span><span class="t">9:12 pm</span></div>
+          <div class="bub"><b>On the way</b>Your parcel is out for delivery today and will reach you by 8 pm.<span class="t">Mon 9:05 am</span></div>
+          <div class="bub"><b>Delivery attempt</b>We could not reach you. Reply with a good time and we will try again today.<span class="lk">Choose a time</span><span class="t">Mon 2:40 pm</span></div>
+        </div>
+        <div class="hint">Illustrative messages. Wording and channel to be confirmed with you.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- OTHERS -->
+<section id="others"><div class="wrap">
+  <div class="kick">Not every customer is Karan</div>
+  <h2 class="t">The same checkout works differently for different shoppers.</h2>
+  <div class="pcards">
+    <div class="pc"><div class="av">R</div><h4>Rhea</h4><div class="loc">Pune · first order, buying for her sister</div><p>Picks COD on a ₹1,699 personalised miniature frame because it is her first time with the brand.</p><span class="pill">Risk tags + Pay After Delivery</span><p class="out">The order is scored before it is made, and she is offered a way to pay after delivery.</p></div>
+    <div class="pc"><div class="av">S</div><h4>Sanjay</h4><div class="loc">Jaipur · gifting to his parents</div><p>Types an address with only a landmark and no clear pincode, on a small phone.</p><span class="pill">Address pre-fill</span><p class="out">A recognised address fills in, so the parcel does not stall at the first delivery attempt.</p></div>
+    <div class="pc"><div class="av">V</div><h4>Vikram</h4><div class="loc">Mumbai · ordered last year</div><p>Returns for his wife's birthday and does not want to type everything again.</p><span class="pill">SSO + QuickPay</span><p class="out">One tap to sign in, one tap to pay.</p></div>
+  </div>
+</div></section>
+
+<!-- TABLE -->
+<section id="table" class="alt"><div class="wrap">
+  <div class="kick">The whole journey on one page</div>
+  <h2 class="t">Six stages, and what Fastrr adds at each.</h2>
+  <table class="nt">
+    <tr><th>Stage</th><th>What Karan experiences</th><th>What Fastrr adds</th></tr>
+    <tr><td>1 · Arrives</td><td>A page that already knows his pincode</td><td>Anonymous visitor identification</td></tr>
+    <tr><td>2 · Product page</td><td>A date for each delivery option</td><td>Dynamic EDD</td></tr>
+    <tr><td>3 · Cart</td><td>Delivery options, a milestone, a matching gift</td><td>Delivery options, milestone bar, AI upsell</td></tr>
+    <tr><td>4 · Checkout</td><td>One page, nothing to type</td><td>Address pre-fill above 95%, SSO</td></tr>
+    <tr><td>5 · Payment</td><td>One-tap UPI, a safe way to pay later</td><td>QuickPay, risk tags, Pay After Delivery, 0% MDR</td></tr>
+    <tr><td>6 · After</td><td>The date he was promised, or an early warning</td><td>NDR tags, SSO reorder</td></tr>
+  </table>
+  <h3 style="margin-top:44px;font-size:26px">What stays Loving Crafts</h3>
+  <p class="sub" style="font-size:18px;margin-top:8px">Taken from your own published pages. These are the things to keep, and what we will confirm in the demo.</p>
   <table class="tbl">
     <tr><th>Loving Crafts today</th><th>What we will confirm in the demo</th></tr>
-    <tr><td>Free shipping at ₹1,000+</td><td><span class="pillo">Keep</span>Shown in the cart as unlocked, so it never reads as "calculated later".</td></tr>
-    <tr><td>Priority shipping as an upgrade</td><td><span class="pillo">Keep</span>Shown as a delivery option with its date, in the cart and at checkout.</td></tr>
-    <tr><td>Partial COD (₹500 or 50% in advance)</td><td><span class="pillc">Confirm</span>Which version applies, and how a partial COD flow is set up with Fastrr. Pay After Delivery is the alternative to compare.</td></tr>
-    <tr><td>Photos uploaded after ordering, by SMS link</td><td><span class="pillc">Confirm</span>Order confirmation and the SMS link carry across exactly as today.</td></tr>
+    <tr><td>Free shipping at ₹1,000+</td><td><span class="pillo">Keep</span>Shown in the cart as unlocked.</td></tr>
+    <tr><td>Priority shipping as an upgrade</td><td><span class="pillo">Keep</span>Shown as a delivery option with its date.</td></tr>
+    <tr><td>Partial COD (₹500 or 50% in advance)</td><td><span class="pillc">Confirm</span>Which version applies and how a partial COD flow is set up with Fastrr. Pay After Delivery is the alternative to compare.</td></tr>
+    <tr><td>Photos uploaded after ordering, by SMS link</td><td><span class="pillc">Confirm</span>Order confirmation and the SMS link carry across as today.</td></tr>
     <tr><td>Delivery counted from the next day, excluding Sundays and holidays</td><td><span class="pillc">Confirm</span>How the date handles production time and the wait for photos.</td></tr>
-    <tr><td>40% off shown on products, no coupon codes visible</td><td><span class="pillo">Keep</span>Discounts and shipping shown at checkout, not "calculated at checkout".</td></tr>
-    <tr><td>Order tracking on lovingcrafts.org</td><td><span class="pillc">Confirm</span>Which domain tracking and order status live on, and how the links carry across.</td></tr>
-    <tr><td>Your payment gateway</td><td><span class="pillc">Confirm</span>Zero MDR on prepaid orders folds the gateway fee into one checkout fee and works with a defined set of gateways. We will check yours.</td></tr>
+    <tr><td>Order tracking on lovingcrafts.org</td><td><span class="pillc">Confirm</span>Which domain tracking and order status live on.</td></tr>
+    <tr><td>Your payment gateway</td><td><span class="pillc">Confirm</span>Zero MDR works with a defined set of gateways. We will check yours.</td></tr>
   </table>
 </div></section>
 
-<section id="numbers"><div class="wrap">
-  <div class="kick">From journey to numbers</div>
-  <h2 class="t">Every moment above has a number behind it. Then you can put in your own.</h2>
-  <p class="sub">First, the results Fastrr brands have seen at each step. Then a calculator you can fill with Loving Crafts' real figures. It is a what-if, not a promise.</p>
-  <table class="nt">
-    <tr><th>Moment in Karan's journey</th><th>What changes</th><th>Result seen on Fastrr</th></tr>
-    <tr><td>Product page</td><td>Dynamic EDD per delivery option</td><td>2 to 5% conversion increments</td></tr>
-    <tr><td>Cart</td><td>Delivery options with dates, milestone bar, AI upsell</td><td>Average order value up 6% from upsell</td></tr>
-    <tr><td>Checkout</td><td>Address pre-fill above 95%, SSO</td><td>Apparel brand: pre-fill 61% to 89%, prepaid 13% to 23%, conversion 0.37% to 0.6%</td></tr>
-    <tr><td>Payment</td><td>QuickPay, payment personalisation, Pay After Delivery</td><td>Prepaid incentive up 11% in prepaid orders. PAD cut COD by 10%, with 7% of orders on PAD</td></tr>
-    <tr><td>Risk</td><td>RTO risk tags</td><td>RTO down 17%</td></tr>
-  </table>
-  <p class="small" style="margin-top:12px">Results are from Fastrr brands in other categories and will vary with traffic, catalogue and mix. Loving Crafts' own results would be measured, not assumed.</p>
-
-  <div class="calc">
-    <div class="panel">
-      <h4>Put in Loving Crafts' numbers</h4>
-      <p class="small" style="margin-bottom:14px">The values below are placeholders, not Loving Crafts' data. Replace them.</p>
-      <div class="fld"><label for="o">Orders per month</label><input id="o" type="number" value="8000" min="0"></div>
-      <div class="fld"><label for="a">Average order value (₹)</label><input id="a" type="number" value="1800" min="0"></div>
-      <div class="fld"><label for="r">Current RTO rate (%)</label><input id="r" type="number" value="8" min="0" max="100" step="0.1"></div>
-      <div class="fld"><label for="k">Cost of one RTO order (₹), shipping plus the made-to-order item that cannot be resold</label><input id="k" type="number" value="600" min="0"></div>
-      <div class="rng"><label for="d"><span>RTO reduction</span><span id="dv">8%</span></label><input id="d" type="range" min="0" max="30" value="8"><div class="sm">Relative, so 8% becomes 7.4%. Proof point: down 17%.</div></div>
-      <div class="rng"><label for="c"><span>Conversion lift</span><span id="cv">3%</span></label><input id="c" type="range" min="0" max="10" value="3"><div class="sm">More orders from the same traffic. Proof point: 2 to 5% from the delivery date alone.</div></div>
-    </div>
-    <div class="panel">
-      <h4>What-if, per month</h4>
-      <table class="res">
-        <tr><th></th><th>Today</th><th>With Fastrr</th></tr>
-        <tr><td>Orders</td><td id="t1"></td><td id="f1"></td></tr>
-        <tr><td>RTO orders</td><td id="t2"></td><td id="f2" class="w"></td></tr>
-        <tr><td>Delivered orders</td><td id="t3"></td><td id="f3" class="w"></td></tr>
-        <tr><td>Delivered revenue</td><td id="t4"></td><td id="f4" class="w"></td></tr>
-        <tr><td>RTO cost</td><td id="t5"></td><td id="f5" class="w"></td></tr>
-      </table>
-      <div class="big"><span>More delivered revenue, per month</span><b id="gm"></b><span id="gy"></span></div>
-      <p class="small" style="margin-top:12px">An illustration from the inputs you enter. It assumes the same traffic, order value and mix, and does not account for Fastrr's fees or any commercial terms.</p>
-    </div>
+<!-- IMPACT -->
+<section id="impact"><div class="wrap">
+  <div class="kick">The impact, on its own</div>
+  <h2 class="t">What Fastrr brands have seen, step by step.</h2>
+  <div class="igrid">
+    <div class="ig"><b>2 to 5%</b><span>Conversion increments from the delivery date widget</span></div>
+    <div class="ig"><b>+6%</b><span>Average order value from cart upsell</span></div>
+    <div class="ig"><b>95%+</b><span>Address pre-fill at checkout</span></div>
+    <div class="ig"><b>+11%</b><span>Prepaid incentive uplift in prepaid orders</span></div>
+    <div class="ig"><b>-10%</b><span>COD with Pay After Delivery, 7% of orders on PAD</span></div>
+    <div class="ig"><b>-17%</b><span>RTO with risk tags</span></div>
   </div>
-
-  <h3 style="margin-top:44px;font-size:26px">Where these features run today</h3>
-  <div class="live"><span>Delivery date: Hidesign, Jisora</span><span>Smart cart: Parul Garg Beauty</span><span>Pay After Delivery: Coitonic</span></div>
-  <p class="small" style="margin-top:10px">Delivery dates, pre-fill, payments and risk tags are drawn from real completed shipments across the Shiprocket network.</p>
+  <p class="small" style="margin-top:14px">These figures come from Fastrr brands in other categories and from Shiprocket network data. They are not projections for Loving Crafts and would be measured, not assumed.</p>
+  <div class="ccards">
+    <div class="cc"><h4>Apparel brand</h4>
+      <div class="r"><span>Address pre-fill</span><b>61% to 89%</b></div>
+      <div class="r"><span>Prepaid share</span><b>13% to 23%</b></div>
+      <div class="r"><span>Conversion</span><b>0.37% to 0.6%</b></div></div>
+    <div class="cc"><h4>Footwear brand</h4>
+      <div class="r"><span>Address pre-fill</span><b>65% to 89%</b></div>
+      <div class="r"><span>Prepaid share</span><b>11% to 43%</b></div>
+      <div class="r"><span>Conversion</span><b>1.27% to 1.50%</b></div></div>
+    <div class="cc"><h4>Personal care brand</h4>
+      <div class="r"><span>Address pre-fill</span><b>70% to 93%</b></div>
+      <div class="r"><span>Prepaid share</span><b>19% to 28%</b></div>
+      <div class="r"><span>Conversion</span><b>2.13% to 3.04%</b></div></div>
+  </div>
 </div></section>
 
-<section id="next" class="alt"><div class="wrap">
-  <div class="kick">Getting started</div>
+<!-- LIVE -->
+<section id="live" class="alt"><div class="wrap">
+  <div class="kick">Getting to live</div>
   <h2 class="t">No commitment. No disruption. Just data.</h2>
-  <p class="sub">We would like to show you this on Loving Crafts' own pages, and let the numbers decide.</p>
-  <div class="ngrid">
+  <div class="ngrid n3">
     <div class="ncard"><i>01</i><h4>See it on your pages</h4><p>A 30-minute Google Meet showing Karan's journey on your own product page, cart and checkout.</p></div>
-    <div class="ncard"><i>02</i><h4>Choose where to start</h4><p>The delivery date and cart first, the full checkout, or keep your checkout and add address pre-fill and NDR tags.</p></div>
-    <div class="ncard"><i>03</i><h4>Test side by side</h4><p>Run Fastrr on a share of traffic next to your current checkout, and measure conversion, prepaid share and RTO.</p></div>
-    <div class="ncard"><i>04</i><h4>Decide on the data</h4><p>Read the results together, and decide how far to take it.</p></div>
+    <div class="ncard"><i>02</i><h4>Test side by side</h4><p>Run Fastrr on a share of traffic next to your current checkout, or keep your checkout and add address pre-fill and NDR tags first.</p></div>
+    <div class="ncard"><i>03</i><h4>Decide on the data</h4><p>Read conversion, prepaid share and RTO together, and decide how far to take it.</p></div>
   </div>
   <div class="cta">
-    <div><h3>Let's walk Karan through Loving Crafts' checkout together.</h3><p>30 minutes on Google Meet, around your calendar. It helps to bring monthly orders, COD and RTO rates, and your payment gateway.</p></div>
-    <a class="b" href="mailto:kutiarunava@gmail.com?subject=Fastrr%20x%20Loving%20Crafts%20demo">Book a demo</a>
+    <div><h3>Let's walk Karan's journey on your store.</h3><p>30 minutes on Google Meet, around your calendar. It helps to bring monthly orders, COD and RTO rates, and your payment gateway.</p></div>
+    <a class="b" href="mailto:kutiarunava@gmail.com?subject=Fastrr%20x%20Loving%20Crafts%20journey%20demo">Let's Talk Journey</a>
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  <b style="color:var(--ink);font-size:15px">Prepared by Arunava Nag, Manager, Enterprise Sales, Fastrr by Shiprocket</b>
-  <p>Prepared for Loving Crafts. Karan is an illustrative character. Mock-ups are illustrative and are not Loving Crafts' live pages. Product names, prices, delivery timelines and policies are as published on lovingcrafts.in on 25 November 2026 and may change. Delivery dates in the mock-ups are worked out from those published timelines. Results quoted are from Fastrr brands in other categories and will vary. The calculator uses placeholder inputs and is not a forecast.</p>
+  <b style="color:var(--ink);font-size:15px">fastrr<span style="color:var(--accent)">.</span> · Prepared by Arunava Nag, Manager, Enterprise Sales, Fastrr by Shiprocket</b>
+  <p>Prepared for Loving Crafts. Karan and the other customers, the messages and the screens are illustrative, and are not Loving Crafts' live pages. Product names, prices, delivery timelines and policies are as published on lovingcrafts.in on 25 November 2026 and may change; delivery dates in the mock-ups are worked out from those timelines. Results quoted are from Fastrr brands in other categories and from Shiprocket network data, and will vary. Commercials are shared separately.</p>
 </div></footer>
 
 <script>
@@ -524,8 +636,6 @@
     })},{rootMargin:'-45% 0px -50% 0px'});
     Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
   }
-
-  /* interactive cart */
   var ALBUM=1599,BOUQUET=1649,MILE=3000,PRI=199;
   var hasB=false,pri=false;
   function inr(n){return '₹'+n.toLocaleString('en-IN')}
@@ -533,8 +643,7 @@
     var sub=ALBUM+(hasB?BOUQUET:0);
     var free=sub>=MILE;
     var fee=(pri&&!free)?PRI:0;
-    var total=sub+fee;
-    document.getElementById('ctot').textContent=inr(total);
+    document.getElementById('ctot').textContent=inr(sub+fee);
     document.getElementById('cc').textContent=hasB?'2 items':'1 item';
     var msg=document.getElementById('cmsg'),unl=document.getElementById('unl'),nd=document.getElementById('cnd');
     document.getElementById('cfl').style.width=Math.min(100,Math.round(sub/MILE*100))+'%';
@@ -549,32 +658,6 @@
   document.getElementById('oStd').addEventListener('click',function(){pri=false;render()});
   document.getElementById('oPri').addEventListener('click',function(){pri=true;render()});
   render();
-
-  /* calculator */
-  function fmt(n){
-    n=Math.round(n);
-    if(n>=1e7)return '₹'+(n/1e7).toFixed(2)+' Cr';
-    if(n>=1e5)return '₹'+(n/1e5).toFixed(2)+' lakh';
-    return '₹'+n.toLocaleString('en-IN');
-  }
-  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
-  function calc(){
-    var O=num('o'),A=num('a'),R=num('r')/100,K=num('k'),d=num('d')/100,c=num('c')/100;
-    document.getElementById('dv').textContent=Math.round(d*100)+'%';
-    document.getElementById('cv').textContent=Math.round(c*100)+'%';
-    var tR=O*R,tD=O-tR,tRev=tD*A,tCost=tR*K;
-    var O2=O*(1+c),R2=R*(1-d),fR=O2*R2,fD=O2-fR,fRev=fD*A,fCost=fR*K;
-    function set(id,v){document.getElementById(id).textContent=v}
-    set('t1',Math.round(O).toLocaleString('en-IN'));set('f1',Math.round(O2).toLocaleString('en-IN'));
-    set('t2',Math.round(tR).toLocaleString('en-IN'));set('f2',Math.round(fR).toLocaleString('en-IN'));
-    set('t3',Math.round(tD).toLocaleString('en-IN'));set('f3',Math.round(fD).toLocaleString('en-IN'));
-    set('t4',fmt(tRev));set('f4',fmt(fRev));
-    set('t5',fmt(tCost));set('f5',fmt(fCost));
-    var g=fRev-tRev;
-    set('gm',fmt(g));set('gy','Over 12 months: '+fmt(g*12));
-  }
-  ['o','a','r','k','d','c'].forEach(function(id){document.getElementById(id).addEventListener('input',calc)});
-  calc();
 })();
 </script>
 </body>
